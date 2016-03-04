@@ -29,14 +29,14 @@ upstate pt st =
     if (distance pt) <= 0.5 then ((hits + 1, pt :: lHits), (nohits, lNoHits)) else
     ((hits, lHits), (nohits + 1, pt :: lNoHits))
   
-height = 200
-width = 200
+height = 100
+width = 100
 
-pointsToSquare : Color.Color -> List Point -> List Form
-pointsToSquare c lps = 
+pointsToSquare : (Int, Int) -> Color.Color -> List Point -> List Form
+pointsToSquare (w,h) c lps = 
   case lps of 
     [] -> []
-    pt::tail -> (move ((width*pt.x), (height*pt.y)) (filled c (circle 10))) :: (pointsToSquare c tail)
+    pt::tail -> (move (((toFloat w)*pt.x), ((toFloat h)*pt.y)) (filled c (circle 1))) :: (pointsToSquare (w,h) c tail)
 
 piApprox : State -> Float
 piApprox s = 
@@ -45,11 +45,11 @@ piApprox s =
       4.0 * (toFloat nohits) / (toFloat (hits + nohits))
 
 
-stateAppend : State -> List Form
-stateAppend st = 
+stateAppend : (Int, Int) -> State -> List Form
+stateAppend (w,h) st = 
   case st of
     ((hits, lHits), (nohits, lNoHits)) -> 
-      (pointsToSquare yellow lHits) ++ (pointsToSquare black lNoHits)
+      (pointsToSquare (w,h) white lHits) ++ (pointsToSquare (w,h) black lNoHits)
 
 showPi : Float -> Float -> Form
 showPi y pi = 
@@ -58,15 +58,57 @@ showPi y pi =
 view : (Int,Int) -> State -> Element
 view (w,h) st =
   collage w h (background (w,h) st)
+  --(centered (Text.link "samsegan.github.io" (fromString "samsegan.github.io")))
+
+gameDesc : String
+gameDesc = 
+  "This is a link to my recreation of the popular\npuzzle game, 2048. This was created, along\n
+  with this page, using the Elm functional programming language."
+
+webAppDesc : String
+webAppDesc = 
+  "Here is the web application that I built to ease the process of sourcing private companies
+  for potential investment targets. It contains a database of hundreds of thousands of companies, 
+  tracks the growth of these companies, and lets the user track individual investment targets."
+
+lineText : (Float, Float) -> String -> Form
+lineText (x,y) s =
+  (text (bold (Text.color black (fromString s)))) |> move (x,y)
 
 background : (Int, Int) -> State -> List Form
 background (w,h) st =
     [toForm (image w h ("img/personalBackground.png")),
-    toForm (centered (Text.link "samsegan.github.io" (fromString "samsegan.github.io"))) |> move (toFloat -w/3, toFloat h/4),
-    toForm (centered (Text.link "desolate-headland-7179.herokuapp.com" (fromString "desolate-headland-7179.herokuapp.com"))) |> move (toFloat w/3,toFloat h/4),
-    toForm (show (piApprox st)) |> moveY -250] ++ 
-    stateAppend st
+    toForm (image 500 130 ("img/personalLogo.png")) |> moveY 280,
+    (text (bold (Text.color white (Text.height 20 (fromString "Pi: Now being calculated by the position of the white and black points on this screen"))))) |> move (0,toFloat (-h//2 +40)),
+    (text (bold (Text.color white (fromString "Everything on this page is created by Sam Segan, 2016")))) |> move(0,-300),
+    toForm (show (piApprox st)) |> move (0,toFloat (-h//2 +10))] ++ 
+    stateAppend (w,h) st ++ 
+      [
+      toForm (image 200 50 ("img/about.png")) |> moveY 50,
+      toForm (image 700 120 ("img/textBack.png")) |> moveY -110,
+      (text (bold (Text.color black (Text.height 20 (fromString "I am a junior at the University of Chicago"))))) |> move (0,-50),
+      (text (bold (Text.color black (Text.height 20 (fromString "majoring in Computer Science and Economics."))))) |> move (0,-75),
+      (text (bold (Text.color black (Text.height 20 (fromString "I love computers, and love to build things."))))) |> move (0,-100),
+      (text (bold (Text.color black (Text.height 20 (fromString "I look for challenges and am passionate about solving difficult problems."))))) |> move (0,-125),
+      --lineText (0,-15) "I am a junior at the University of Chicago majoring in Computer Science and Economics. ",
+      --lineText (0,-30) "I love computers, and love to build things. I look for challenges and am passionate about solving difficult problems.",
+      
+      toForm (image 385 110 ("img/textBox.png")) |> move (toFloat -w/3, toFloat h/4 - 65),
+      lineText (toFloat -w/3, toFloat h/4 - 25) "This is a link to my recreation of the popular puzzle",
+      lineText (toFloat -w/3, toFloat h/4 - 45) "game, 2048. This was created, along with the page you are",
+      lineText (toFloat -w/3, toFloat h/4 - 65) "looking at, using the Elm functional programming language.",
 
+      toForm (image 385 110 ("img/textBox.png")) |> move (toFloat w/3, toFloat h/4 - 65),
+      lineText (toFloat w/3, toFloat h/4 - 25) "I built the web application above to ease the",
+      lineText (toFloat w/3, toFloat h/4 - 45) "process of sourcing private companies for potential",
+      lineText (toFloat w/3, toFloat h/4 - 65) "investment targets. It contains a database of hundreds",
+      lineText (toFloat w/3, toFloat h/4 - 85) "of thousands of companies, tracks the growth of these",
+      lineText (toFloat w/3, toFloat h/4 - 105) "companies, and lets the user track individual investment targets.",
+
+      toForm (image 140 65 ("img/2048Logo.png")) |> move (toFloat -w/3, toFloat h/4 + 65),
+      --toForm (image 500 100 ("img/webAppPic.png")) |> move (toFloat w/3, toFloat h/4 + 65),
+      toForm (centered (Text.link "https://samsegan.github.io" (fromString "2048"))) |> move (toFloat -w/3, toFloat h/4 + 20),
+    toForm (centered (Text.link "https://desolate-headland-7179.herokuapp.com/" (fromString "Sourcing Tool"))) |> move (toFloat w/3,toFloat h/4 + 20)]
 
 genPoint : Random.Seed -> (Point, Random.Seed)
 genPoint s =

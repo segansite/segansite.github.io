@@ -27,60 +27,143 @@ Elm.Page.make = function (_elm) {
    {ctor: "_Tuple2",_0: {x: 0,y: 0},_1: $Random.initialSeed(0)},
    $Time.every($Time.millisecond));
    var signalPoint = A2($Signal.map,$Basics.fst,signalPointSeed);
+   var lineText = F2(function (_p1,s) {
+      var _p2 = _p1;
+      return A2($Graphics$Collage.move,
+      {ctor: "_Tuple2",_0: _p2._0,_1: _p2._1},
+      $Graphics$Collage.text($Text.bold(A2($Text.color,$Color.black,$Text.fromString(s)))));
+   });
+   var webAppDesc = "Here is the web application that I built to ease the process of sourcing private companies\n  for potential investment targets. It contains a database of hundreds of thousands of companies, \n  tracks the growth of these companies, and lets the user track individual investment targets.";
+   var gameDesc = "This is a link to my recreation of the popular\npuzzle game, 2048. This was created, along\n\n  with this page, using the Elm functional programming language.";
    var showPi = F2(function (y,pi) {    return A2($Graphics$Collage.moveY,y,$Graphics$Collage.toForm($Graphics$Element.show(pi)));});
-   var piApprox = function (s) {    var _p1 = s;var _p2 = _p1._1._0;return 4.0 * $Basics.toFloat(_p2) / $Basics.toFloat(_p1._0._0 + _p2);};
-   var width = 200;
-   var height = 200;
-   var pointsToSquare = F2(function (c,lps) {
-      var _p3 = lps;
-      if (_p3.ctor === "[]") {
+   var piApprox = function (s) {    var _p3 = s;var _p4 = _p3._1._0;return 4.0 * $Basics.toFloat(_p4) / $Basics.toFloat(_p3._0._0 + _p4);};
+   var pointsToSquare = F3(function (_p5,c,lps) {
+      var _p6 = _p5;
+      var _p10 = _p6._0;
+      var _p9 = _p6._1;
+      var _p7 = lps;
+      if (_p7.ctor === "[]") {
             return _U.list([]);
          } else {
-            var _p4 = _p3._0;
+            var _p8 = _p7._0;
             return A2($List._op["::"],
-            A2($Graphics$Collage.move,{ctor: "_Tuple2",_0: width * _p4.x,_1: height * _p4.y},A2($Graphics$Collage.filled,c,$Graphics$Collage.circle(10))),
-            A2(pointsToSquare,c,_p3._1));
+            A2($Graphics$Collage.move,
+            {ctor: "_Tuple2",_0: $Basics.toFloat(_p10) * _p8.x,_1: $Basics.toFloat(_p9) * _p8.y},
+            A2($Graphics$Collage.filled,c,$Graphics$Collage.circle(1))),
+            A3(pointsToSquare,{ctor: "_Tuple2",_0: _p10,_1: _p9},c,_p7._1));
          }
    });
-   var stateAppend = function (st) {
-      var _p5 = st;
-      return A2($Basics._op["++"],A2(pointsToSquare,$Color.yellow,_p5._0._1),A2(pointsToSquare,$Color.black,_p5._1._1));
-   };
-   var background = F2(function (_p6,st) {
-      var _p7 = _p6;
-      var _p9 = _p7._0;
-      var _p8 = _p7._1;
+   var stateAppend = F2(function (_p11,st) {
+      var _p12 = _p11;
+      var _p15 = _p12._0;
+      var _p14 = _p12._1;
+      var _p13 = st;
       return A2($Basics._op["++"],
-      _U.list([$Graphics$Collage.toForm(A3($Graphics$Element.image,_p9,_p8,"img/personalBackground.png"))
+      A3(pointsToSquare,{ctor: "_Tuple2",_0: _p15,_1: _p14},$Color.white,_p13._0._1),
+      A3(pointsToSquare,{ctor: "_Tuple2",_0: _p15,_1: _p14},$Color.black,_p13._1._1));
+   });
+   var background = F2(function (_p16,st) {
+      var _p17 = _p16;
+      var _p19 = _p17._0;
+      var _p18 = _p17._1;
+      return A2($Basics._op["++"],
+      _U.list([$Graphics$Collage.toForm(A3($Graphics$Element.image,_p19,_p18,"img/personalBackground.png"))
+              ,A2($Graphics$Collage.moveY,280,$Graphics$Collage.toForm(A3($Graphics$Element.image,500,130,"img/personalLogo.png")))
               ,A2($Graphics$Collage.move,
-              {ctor: "_Tuple2",_0: $Basics.toFloat(0 - _p9) / 3,_1: $Basics.toFloat(_p8) / 4},
-              $Graphics$Collage.toForm($Graphics$Element.centered(A2($Text.link,"samsegan.github.io",$Text.fromString("samsegan.github.io")))))
+              {ctor: "_Tuple2",_0: 0,_1: $Basics.toFloat(((0 - _p18) / 2 | 0) + 40)},
+              $Graphics$Collage.text($Text.bold(A2($Text.color,
+              $Color.white,
+              A2($Text.height,20,$Text.fromString("Pi: Now being calculated by the position of the white and black points on this screen"))))))
               ,A2($Graphics$Collage.move,
-              {ctor: "_Tuple2",_0: $Basics.toFloat(_p9) / 3,_1: $Basics.toFloat(_p8) / 4},
+              {ctor: "_Tuple2",_0: 0,_1: -300},
+              $Graphics$Collage.text($Text.bold(A2($Text.color,$Color.white,$Text.fromString("Everything on this page is created by Sam Segan, 2016")))))
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: 0,_1: $Basics.toFloat(((0 - _p18) / 2 | 0) + 10)},
+              $Graphics$Collage.toForm($Graphics$Element.show(piApprox(st))))]),
+      A2($Basics._op["++"],
+      A2(stateAppend,{ctor: "_Tuple2",_0: _p19,_1: _p18},st),
+      _U.list([A2($Graphics$Collage.moveY,50,$Graphics$Collage.toForm(A3($Graphics$Element.image,200,50,"img/about.png")))
+              ,A2($Graphics$Collage.moveY,-110,$Graphics$Collage.toForm(A3($Graphics$Element.image,700,120,"img/textBack.png")))
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: 0,_1: -50},
+              $Graphics$Collage.text($Text.bold(A2($Text.color,
+              $Color.black,
+              A2($Text.height,20,$Text.fromString("I am a junior at the University of Chicago"))))))
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: 0,_1: -75},
+              $Graphics$Collage.text($Text.bold(A2($Text.color,
+              $Color.black,
+              A2($Text.height,20,$Text.fromString("majoring in Computer Science and Economics."))))))
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: 0,_1: -100},
+              $Graphics$Collage.text($Text.bold(A2($Text.color,
+              $Color.black,
+              A2($Text.height,20,$Text.fromString("I love computers, and love to build things."))))))
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: 0,_1: -125},
+              $Graphics$Collage.text($Text.bold(A2($Text.color,
+              $Color.black,
+              A2($Text.height,20,$Text.fromString("I look for challenges and am passionate about solving difficult problems."))))))
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(0 - _p19) / 3,_1: $Basics.toFloat(_p18) / 4 - 65},
+              $Graphics$Collage.toForm(A3($Graphics$Element.image,385,110,"img/textBox.png")))
+              ,A2(lineText,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(0 - _p19) / 3,_1: $Basics.toFloat(_p18) / 4 - 25},
+              "This is a link to my recreation of the popular puzzle")
+              ,A2(lineText,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(0 - _p19) / 3,_1: $Basics.toFloat(_p18) / 4 - 45},
+              "game, 2048. This was created, along with the page you are")
+              ,A2(lineText,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(0 - _p19) / 3,_1: $Basics.toFloat(_p18) / 4 - 65},
+              "looking at, using the Elm functional programming language.")
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(_p19) / 3,_1: $Basics.toFloat(_p18) / 4 - 65},
+              $Graphics$Collage.toForm(A3($Graphics$Element.image,385,110,"img/textBox.png")))
+              ,A2(lineText,{ctor: "_Tuple2",_0: $Basics.toFloat(_p19) / 3,_1: $Basics.toFloat(_p18) / 4 - 25},"I built the web application above to ease the")
+              ,A2(lineText,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(_p19) / 3,_1: $Basics.toFloat(_p18) / 4 - 45},
+              "process of sourcing private companies for potential")
+              ,A2(lineText,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(_p19) / 3,_1: $Basics.toFloat(_p18) / 4 - 65},
+              "investment targets. It contains a database of hundreds")
+              ,A2(lineText,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(_p19) / 3,_1: $Basics.toFloat(_p18) / 4 - 85},
+              "of thousands of companies, tracks the growth of these")
+              ,A2(lineText,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(_p19) / 3,_1: $Basics.toFloat(_p18) / 4 - 105},
+              "companies, and lets the user track individual investment targets.")
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(0 - _p19) / 3,_1: $Basics.toFloat(_p18) / 4 + 65},
+              $Graphics$Collage.toForm(A3($Graphics$Element.image,140,65,"img/2048Logo.png")))
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(0 - _p19) / 3,_1: $Basics.toFloat(_p18) / 4 + 20},
+              $Graphics$Collage.toForm($Graphics$Element.centered(A2($Text.link,"https://samsegan.github.io",$Text.fromString("2048")))))
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(_p19) / 3,_1: $Basics.toFloat(_p18) / 4 + 20},
               $Graphics$Collage.toForm($Graphics$Element.centered(A2($Text.link,
-              "desolate-headland-7179.herokuapp.com",
-              $Text.fromString("desolate-headland-7179.herokuapp.com")))))
-              ,A2($Graphics$Collage.moveY,-250,$Graphics$Collage.toForm($Graphics$Element.show(piApprox(st))))]),
-      stateAppend(st));
+              "https://desolate-headland-7179.herokuapp.com/",
+              $Text.fromString("Sourcing Tool")))))])));
    });
-   var view = F2(function (_p10,st) {
-      var _p11 = _p10;
-      var _p13 = _p11._0;
-      var _p12 = _p11._1;
-      return A3($Graphics$Collage.collage,_p13,_p12,A2(background,{ctor: "_Tuple2",_0: _p13,_1: _p12},st));
+   var view = F2(function (_p20,st) {
+      var _p21 = _p20;
+      var _p23 = _p21._0;
+      var _p22 = _p21._1;
+      return A3($Graphics$Collage.collage,_p23,_p22,A2(background,{ctor: "_Tuple2",_0: _p23,_1: _p22},st));
    });
+   var width = 100;
+   var height = 100;
    var distance = function (pt) {    return $Basics.sqrt(Math.pow(pt.x,2) + Math.pow(pt.y,2));};
    var upstate = F2(function (pt,st) {
-      var _p14 = st;
-      var _p18 = _p14._1._0;
-      var _p17 = _p14._1._1;
-      var _p16 = _p14._0._1;
-      var _p15 = _p14._0._0;
+      var _p24 = st;
+      var _p28 = _p24._1._0;
+      var _p27 = _p24._1._1;
+      var _p26 = _p24._0._1;
+      var _p25 = _p24._0._0;
       return _U.cmp(distance(pt),0.5) < 1 ? {ctor: "_Tuple2"
-                                            ,_0: {ctor: "_Tuple2",_0: _p15 + 1,_1: A2($List._op["::"],pt,_p16)}
-                                            ,_1: {ctor: "_Tuple2",_0: _p18,_1: _p17}} : {ctor: "_Tuple2"
-                                                                                        ,_0: {ctor: "_Tuple2",_0: _p15,_1: _p16}
-                                                                                        ,_1: {ctor: "_Tuple2",_0: _p18 + 1,_1: A2($List._op["::"],pt,_p17)}};
+                                            ,_0: {ctor: "_Tuple2",_0: _p25 + 1,_1: A2($List._op["::"],pt,_p26)}
+                                            ,_1: {ctor: "_Tuple2",_0: _p28,_1: _p27}} : {ctor: "_Tuple2"
+                                                                                        ,_0: {ctor: "_Tuple2",_0: _p25,_1: _p26}
+                                                                                        ,_1: {ctor: "_Tuple2",_0: _p28 + 1,_1: A2($List._op["::"],pt,_p27)}};
    });
    var initState = {ctor: "_Tuple2",_0: {ctor: "_Tuple2",_0: 0,_1: _U.list([])},_1: {ctor: "_Tuple2",_0: 0,_1: _U.list([])}};
    var main = A3($Signal.map2,view,$Window.dimensions,A3($Signal.foldp,upstate,initState,signalPoint));
@@ -97,6 +180,9 @@ Elm.Page.make = function (_elm) {
                              ,stateAppend: stateAppend
                              ,showPi: showPi
                              ,view: view
+                             ,gameDesc: gameDesc
+                             ,webAppDesc: webAppDesc
+                             ,lineText: lineText
                              ,background: background
                              ,genPoint: genPoint
                              ,signalPointSeed: signalPointSeed
