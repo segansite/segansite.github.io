@@ -78,7 +78,7 @@ lineText (x,y) s =
 background : (Int, Int) -> State -> List Form
 background (w,h) st =
     [toForm (image w h ("img/personalBackground.png")),
-    toForm (image 500 130 ("img/personalLogo.png")) |> moveY 280,
+    toForm (image 500 130 ("img/personalLogo.png")) |> move (0,280),
     (text (bold (Text.color white (Text.height 20 (fromString "Pi: Now being calculated by the position of the white and black points on this screen"))))) |> move (0,toFloat (-h//2 +40)),
     (text (bold (Text.color white (fromString "Everything on this page is created by Sam Segan, 2016")))) |> move(0,-300),
     toForm (show (piApprox st)) |> move (0,toFloat (-h//2 +10))] ++ 
