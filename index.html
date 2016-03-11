@@ -6372,7 +6372,7 @@ Elm.Page.make = function (_elm) {
       var _p2 = _p1;
       return A2($Graphics$Collage.move,
       {ctor: "_Tuple2",_0: _p2._0,_1: _p2._1},
-      $Graphics$Collage.text($Text.bold(A2($Text.color,$Color.black,$Text.fromString(s)))));
+      $Graphics$Collage.text($Text.bold(A2($Text.color,$Color.white,$Text.fromString(s)))));
    });
    var webAppDesc = "Here is the web application that I built to ease the process of sourcing private companies\n  for potential investment targets. It contains a database of hundreds of thousands of companies, \n  tracks the growth of these companies, and lets the user track individual investment targets.";
    var gameDesc = "This is a link to my recreation of the popular\npuzzle game, 2048. This was created, along\n\n  with this page, using the Elm functional programming language.";
@@ -6408,7 +6408,7 @@ Elm.Page.make = function (_elm) {
       var _p19 = _p17._0;
       var _p18 = _p17._1;
       return A2($Basics._op["++"],
-      _U.list([$Graphics$Collage.toForm(A3($Graphics$Element.image,_p19,_p18,"img/personalBackground.png"))
+      _U.list([$Graphics$Collage.toForm(A3($Graphics$Element.image,_p19,_p18,"img/uchicagoColor.png"))
               ,A2($Graphics$Collage.move,{ctor: "_Tuple2",_0: 0,_1: 280},$Graphics$Collage.toForm(A3($Graphics$Element.image,500,130,"img/PersonalLogo.png")))
               ,A2($Graphics$Collage.move,
               {ctor: "_Tuple2",_0: 0,_1: $Basics.toFloat(((0 - _p18) / 2 | 0) + 40)},
@@ -6420,34 +6420,35 @@ Elm.Page.make = function (_elm) {
               $Graphics$Collage.text($Text.bold(A2($Text.color,$Color.white,$Text.fromString("Everything on this page is created by Sam Segan, 2016")))))
               ,A2($Graphics$Collage.move,
               {ctor: "_Tuple2",_0: 0,_1: $Basics.toFloat(((0 - _p18) / 2 | 0) + 10)},
+              $Graphics$Collage.toForm(A3($Graphics$Element.image,200,25,"img/linkBackground.png")))
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: 0,_1: $Basics.toFloat(((0 - _p18) / 2 | 0) + 10)},
               $Graphics$Collage.toForm($Graphics$Element.show(piApprox(st))))]),
       A2($Basics._op["++"],
       A2(stateAppend,{ctor: "_Tuple2",_0: _p19,_1: _p18},st),
-      _U.list([A2($Graphics$Collage.moveY,50,$Graphics$Collage.toForm(A3($Graphics$Element.image,200,50,"img/about.png")))
-              ,A2($Graphics$Collage.moveY,-110,$Graphics$Collage.toForm(A3($Graphics$Element.image,700,120,"img/textBack.png")))
-              ,A2($Graphics$Collage.move,
+      _U.list([A2($Graphics$Collage.move,
               {ctor: "_Tuple2",_0: 0,_1: -50},
               $Graphics$Collage.text($Text.bold(A2($Text.color,
-              $Color.black,
+              $Color.white,
               A2($Text.height,20,$Text.fromString("I am a junior at the University of Chicago"))))))
               ,A2($Graphics$Collage.move,
               {ctor: "_Tuple2",_0: 0,_1: -75},
               $Graphics$Collage.text($Text.bold(A2($Text.color,
-              $Color.black,
+              $Color.white,
               A2($Text.height,20,$Text.fromString("majoring in Computer Science and Economics."))))))
               ,A2($Graphics$Collage.move,
               {ctor: "_Tuple2",_0: 0,_1: -100},
               $Graphics$Collage.text($Text.bold(A2($Text.color,
-              $Color.black,
+              $Color.white,
               A2($Text.height,20,$Text.fromString("I love computers, and love to build things."))))))
               ,A2($Graphics$Collage.move,
               {ctor: "_Tuple2",_0: 0,_1: -125},
               $Graphics$Collage.text($Text.bold(A2($Text.color,
-              $Color.black,
+              $Color.white,
               A2($Text.height,20,$Text.fromString("I look for challenges and am passionate about solving difficult problems."))))))
               ,A2($Graphics$Collage.move,
               {ctor: "_Tuple2",_0: $Basics.toFloat(0 - _p19) / 3,_1: $Basics.toFloat(_p18) / 4 - 65},
-              $Graphics$Collage.toForm(A3($Graphics$Element.image,385,110,"img/textBox.png")))
+              $Graphics$Collage.toForm(A3($Graphics$Element.image,385,130,"img/textBox.png")))
               ,A2(lineText,
               {ctor: "_Tuple2",_0: $Basics.toFloat(0 - _p19) / 3,_1: $Basics.toFloat(_p18) / 4 - 25},
               "This is a link to my recreation of the popular puzzle")
@@ -6459,7 +6460,7 @@ Elm.Page.make = function (_elm) {
               "looking at, using the Elm functional programming language.")
               ,A2($Graphics$Collage.move,
               {ctor: "_Tuple2",_0: $Basics.toFloat(_p19) / 3,_1: $Basics.toFloat(_p18) / 4 - 65},
-              $Graphics$Collage.toForm(A3($Graphics$Element.image,385,110,"img/textBox.png")))
+              $Graphics$Collage.toForm(A3($Graphics$Element.image,390,130,"img/textBox.png")))
               ,A2(lineText,{ctor: "_Tuple2",_0: $Basics.toFloat(_p19) / 3,_1: $Basics.toFloat(_p18) / 4 - 25},"I built the web application above to ease the")
               ,A2(lineText,
               {ctor: "_Tuple2",_0: $Basics.toFloat(_p19) / 3,_1: $Basics.toFloat(_p18) / 4 - 45},
@@ -6474,8 +6475,17 @@ Elm.Page.make = function (_elm) {
               {ctor: "_Tuple2",_0: $Basics.toFloat(_p19) / 3,_1: $Basics.toFloat(_p18) / 4 - 105},
               "companies, and lets the user track individual investment targets.")
               ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(((0 - _p19) / 2 | 0) + 100),_1: $Basics.toFloat(((0 - _p18) / 2 | 0) + 100)},
+              $Graphics$Collage.toForm(A3($Graphics$Element.image,150,150,"img/uchicago.png")))
+              ,A2($Graphics$Collage.move,
               {ctor: "_Tuple2",_0: $Basics.toFloat(0 - _p19) / 3,_1: $Basics.toFloat(_p18) / 4 + 65},
               $Graphics$Collage.toForm(A3($Graphics$Element.image,140,65,"img/2048Logo.png")))
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(0 - _p19) / 3,_1: $Basics.toFloat(_p18) / 4 + 20},
+              $Graphics$Collage.toForm(A3($Graphics$Element.image,50,20,"img/linkBackground.png")))
+              ,A2($Graphics$Collage.move,
+              {ctor: "_Tuple2",_0: $Basics.toFloat(_p19) / 3,_1: $Basics.toFloat(_p18) / 4 + 20},
+              $Graphics$Collage.toForm(A3($Graphics$Element.image,100,20,"img/linkBackground.png")))
               ,A2($Graphics$Collage.move,
               {ctor: "_Tuple2",_0: $Basics.toFloat(0 - _p19) / 3,_1: $Basics.toFloat(_p18) / 4 + 20},
               $Graphics$Collage.toForm($Graphics$Element.centered(A2($Text.link,"https://samsegan.github.io",$Text.fromString("2048")))))
