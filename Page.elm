@@ -73,42 +73,46 @@ webAppDesc =
 
 lineText : (Float, Float) -> String -> Form
 lineText (x,y) s =
-  (text (bold (Text.color black (fromString s)))) |> move (x,y)
+  (text (bold (Text.color white (fromString s)))) |> move (x,y)
 
 background : (Int, Int) -> State -> List Form
 background (w,h) st =
-    [toForm (image w h ("img/personalBackground.png")),
+    [toForm (image w h ("img/uchicagoColor.png")),
     toForm (image 500 130 ("img/PersonalLogo.png")) |> move (0,280),
     (text (bold (Text.color white (Text.height 20 (fromString "Pi: Now being calculated by the position of the white and black points on this screen"))))) |> move (0,toFloat (-h//2 +40)),
     (text (bold (Text.color white (fromString "Everything on this page is created by Sam Segan, 2016")))) |> move(0,-300),
+    toForm (image 200 25 ("img/linkBackground.png")) |> move (0,toFloat (-h//2 +10)),
     toForm (show (piApprox st)) |> move (0,toFloat (-h//2 +10))] ++ 
     stateAppend (w,h) st ++ 
       [
-      toForm (image 200 50 ("img/about.png")) |> moveY 50,
-      toForm (image 700 120 ("img/textBack.png")) |> moveY -110,
-      (text (bold (Text.color black (Text.height 20 (fromString "I am a junior at the University of Chicago"))))) |> move (0,-50),
-      (text (bold (Text.color black (Text.height 20 (fromString "majoring in Computer Science and Economics."))))) |> move (0,-75),
-      (text (bold (Text.color black (Text.height 20 (fromString "I love computers, and love to build things."))))) |> move (0,-100),
-      (text (bold (Text.color black (Text.height 20 (fromString "I look for challenges and am passionate about solving difficult problems."))))) |> move (0,-125),
+      --(text (bold (Text.color white (Text.height 20 (fromString "About"))))),
+      --toForm (image 700 120 ("img/textBack.png")) |> moveY -110,
+      (text (bold (Text.color white (Text.height 20 (fromString "I am a junior at the University of Chicago"))))) |> move (0,-50),
+      (text (bold (Text.color white (Text.height 20 (fromString "majoring in Computer Science and Economics."))))) |> move (0,-75),
+      (text (bold (Text.color white (Text.height 20 (fromString "I love computers, and love to build things."))))) |> move (0,-100),
+      (text (bold (Text.color white (Text.height 20 (fromString "I look for challenges and am passionate about solving difficult problems."))))) |> move (0,-125),
       --lineText (0,-15) "I am a junior at the University of Chicago majoring in Computer Science and Economics. ",
       --lineText (0,-30) "I love computers, and love to build things. I look for challenges and am passionate about solving difficult problems.",
       
-      toForm (image 385 110 ("img/textBox.png")) |> move (toFloat -w/3, toFloat h/4 - 65),
+      toForm (image 385 130 ("img/textBox.png")) |> move (toFloat -w/3, toFloat h/4 - 65),
       lineText (toFloat -w/3, toFloat h/4 - 25) "This is a link to my recreation of the popular puzzle",
       lineText (toFloat -w/3, toFloat h/4 - 45) "game, 2048. This was created, along with the page you are",
       lineText (toFloat -w/3, toFloat h/4 - 65) "looking at, using the Elm functional programming language.",
 
-      toForm (image 385 110 ("img/textBox.png")) |> move (toFloat w/3, toFloat h/4 - 65),
+      toForm (image 390 130 ("img/textBox.png")) |> move (toFloat w/3, toFloat h/4 - 65),
       lineText (toFloat w/3, toFloat h/4 - 25) "I built the web application above to ease the",
       lineText (toFloat w/3, toFloat h/4 - 45) "process of sourcing private companies for potential",
       lineText (toFloat w/3, toFloat h/4 - 65) "investment targets. It contains a database of hundreds",
       lineText (toFloat w/3, toFloat h/4 - 85) "of thousands of companies, tracks the growth of these",
       lineText (toFloat w/3, toFloat h/4 - 105) "companies, and lets the user track individual investment targets.",
 
+      toForm (image 150 150 ("img/uchicago.png")) |> move (toFloat (-w//2 + 100),toFloat (-h//2 + 100)),
       toForm (image 140 65 ("img/2048Logo.png")) |> move (toFloat -w/3, toFloat h/4 + 65),
       --toForm (image 500 100 ("img/webAppPic.png")) |> move (toFloat w/3, toFloat h/4 + 65),
+      toForm (image 50 20 ("img/linkBackground.png")) |> move (toFloat -w/3, toFloat h/4 + 20),
+      toForm (image 100 20 ("img/linkBackground.png")) |> move (toFloat w/3,toFloat h/4 + 20),
       toForm (centered (Text.link "https://samsegan.github.io" (fromString "2048"))) |> move (toFloat -w/3, toFloat h/4 + 20),
-    toForm (centered (Text.link "https://desolate-headland-7179.herokuapp.com/" (fromString "Sourcing Tool"))) |> move (toFloat w/3,toFloat h/4 + 20)]
+      toForm (centered (Text.link "https://desolate-headland-7179.herokuapp.com/" (fromString "Sourcing Tool"))) |> move (toFloat w/3,toFloat h/4 + 20)]
 
 genPoint : Random.Seed -> (Point, Random.Seed)
 genPoint s =
