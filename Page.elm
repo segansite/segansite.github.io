@@ -89,7 +89,7 @@ background (w,h) st =
       --toForm (image 700 120 ("img/textBack.png")) |> moveY -110,
       (text (bold (Text.color white (Text.height 20 (fromString "I am a junior at the University of Chicago"))))) |> move (0,-50),
       (text (bold (Text.color white (Text.height 20 (fromString "majoring in Computer Science and Economics."))))) |> move (0,-75),
-      (text (bold (Text.color white (Text.height 20 (fromString "I love computers, and love to build things."))))) |> move (0,-100),
+      --(text (bold (Text.color white (Text.height 20 (fromString "I love computers, and love to build things."))))) |> move (0,-100),
       (text (bold (Text.color white (Text.height 20 (fromString "I look for challenges and am passionate about solving difficult problems."))))) |> move (0,-125),
       --lineText (0,-15) "I am a junior at the University of Chicago majoring in Computer Science and Economics. ",
       --lineText (0,-30) "I love computers, and love to build things. I look for challenges and am passionate about solving difficult problems.",

@@ -6470,11 +6470,6 @@ Elm.Page.make = function (_elm) {
               $Color.white,
               A2($Text.height,20,$Text.fromString("majoring in Computer Science and Economics."))))))
               ,A2($Graphics$Collage.move,
-              {ctor: "_Tuple2",_0: 0,_1: -100},
-              $Graphics$Collage.text($Text.bold(A2($Text.color,
-              $Color.white,
-              A2($Text.height,20,$Text.fromString("I love computers, and love to build things."))))))
-              ,A2($Graphics$Collage.move,
               {ctor: "_Tuple2",_0: 0,_1: -125},
               $Graphics$Collage.text($Text.bold(A2($Text.color,
               $Color.white,
