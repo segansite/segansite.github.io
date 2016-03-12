@@ -36,7 +36,7 @@ pointsToSquare : (Int, Int) -> Color.Color -> List Point -> List Form
 pointsToSquare (w,h) c lps = 
   case lps of 
     [] -> []
-    pt::tail -> (move (((toFloat w)*pt.x), ((toFloat h)*pt.y)) (filled c (circle 1))) :: (pointsToSquare (w,h) c tail)
+    pt::tail -> (move (((toFloat w)*pt.x), ((toFloat h)*pt.y)) (filled c (circle 2))) :: (pointsToSquare (w,h) c tail)
 
 piApprox : State -> Float
 piApprox s = 
@@ -80,7 +80,7 @@ background (w,h) st =
     [toForm (image w h ("img/uchicagoColor.png")),
     toForm (image 500 130 ("img/PersonalLogo.png")) |> move (0,280),
     (text (bold (Text.color white (Text.height 20 (fromString "Pi: Now being calculated by the position of the white and black points on this screen"))))) |> move (0,toFloat (-h//2 +40)),
-    (text (bold (Text.color white (fromString "Everything on this page is created by Sam Segan, 2016")))) |> move(0,-300),
+    (text (bold (Text.color white (fromString "Everything on this page is created by Sam Segan, 2016")))) |> move(0,toFloat (-h//2 +75)),
     toForm (image 100 25 ("img/linkBackground.png")) |> move (0,toFloat (-h//2 +10)),
     toForm (show (piApprox st)) |> move (0,toFloat (-h//2 +10))] ++ 
     stateAppend (w,h) st ++ 

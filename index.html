@@ -6394,7 +6394,7 @@ Elm.Page.make = function (_elm) {
             return A2($List._op["::"],
             A2($Graphics$Collage.move,
             {ctor: "_Tuple2",_0: $Basics.toFloat(_p10) * _p8.x,_1: $Basics.toFloat(_p9) * _p8.y},
-            A2($Graphics$Collage.filled,c,$Graphics$Collage.circle(1))),
+            A2($Graphics$Collage.filled,c,$Graphics$Collage.circle(2))),
             A3(pointsToSquare,{ctor: "_Tuple2",_0: _p10,_1: _p9},c,_p7._1));
          }
    });
@@ -6420,7 +6420,7 @@ Elm.Page.make = function (_elm) {
               $Color.white,
               A2($Text.height,20,$Text.fromString("Pi: Now being calculated by the position of the white and black points on this screen"))))))
               ,A2($Graphics$Collage.move,
-              {ctor: "_Tuple2",_0: 0,_1: -300},
+              {ctor: "_Tuple2",_0: 0,_1: $Basics.toFloat(((0 - _p18) / 2 | 0) + 75)},
               $Graphics$Collage.text($Text.bold(A2($Text.color,$Color.white,$Text.fromString("Everything on this page is created by Sam Segan, 2016")))))
               ,A2($Graphics$Collage.move,
               {ctor: "_Tuple2",_0: 0,_1: $Basics.toFloat(((0 - _p18) / 2 | 0) + 10)},
