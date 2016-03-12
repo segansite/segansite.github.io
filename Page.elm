@@ -42,7 +42,7 @@ piApprox : State -> Float
 piApprox s = 
   case s of 
     ((hits, lHits), (nohits, lNoHits)) ->
-      4.0 * (toFloat nohits) / (toFloat (hits + nohits))
+      (toFloat (round (1000 * (4.0 * (toFloat nohits) / (toFloat (hits + nohits))))))/1000
 
 
 stateAppend : (Int, Int) -> State -> List Form
@@ -81,7 +81,7 @@ background (w,h) st =
     toForm (image 500 130 ("img/PersonalLogo.png")) |> move (0,280),
     (text (bold (Text.color white (Text.height 20 (fromString "Pi: Now being calculated by the position of the white and black points on this screen"))))) |> move (0,toFloat (-h//2 +40)),
     (text (bold (Text.color white (fromString "Everything on this page is created by Sam Segan, 2016")))) |> move(0,-300),
-    toForm (image 200 25 ("img/linkBackground.png")) |> move (0,toFloat (-h//2 +10)),
+    toForm (image 100 25 ("img/linkBackground.png")) |> move (0,toFloat (-h//2 +10)),
     toForm (show (piApprox st)) |> move (0,toFloat (-h//2 +10))] ++ 
     stateAppend (w,h) st ++ 
       [

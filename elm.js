@@ -6410,7 +6410,11 @@ Elm.Page.make = function (_elm) {
    var webAppDesc = "Here is the web application that I built to ease the process of sourcing private companies\n  for potential investment targets. It contains a database of hundreds of thousands of companies, \n  tracks the growth of these companies, and lets the user track individual investment targets.";
    var gameDesc = "This is a link to my recreation of the popular\npuzzle game, 2048. This was created, along\n\n  with this page, using the Elm functional programming language.";
    var showPi = F2(function (y,pi) {    return A2($Graphics$Collage.moveY,y,$Graphics$Collage.toForm($Graphics$Element.show(pi)));});
-   var piApprox = function (s) {    var _p3 = s;var _p4 = _p3._1._0;return 4.0 * $Basics.toFloat(_p4) / $Basics.toFloat(_p3._0._0 + _p4);};
+   var piApprox = function (s) {
+      var _p3 = s;
+      var _p4 = _p3._1._0;
+      return $Basics.toFloat($Basics.round(1000 * (4.0 * $Basics.toFloat(_p4) / $Basics.toFloat(_p3._0._0 + _p4)))) / 1000;
+   };
    var pointsToSquare = F3(function (_p5,c,lps) {
       var _p6 = _p5;
       var _p10 = _p6._0;
@@ -6453,7 +6457,7 @@ Elm.Page.make = function (_elm) {
               $Graphics$Collage.text($Text.bold(A2($Text.color,$Color.white,$Text.fromString("Everything on this page is created by Sam Segan, 2016")))))
               ,A2($Graphics$Collage.move,
               {ctor: "_Tuple2",_0: 0,_1: $Basics.toFloat(((0 - _p18) / 2 | 0) + 10)},
-              $Graphics$Collage.toForm(A3($Graphics$Element.image,200,25,"img/linkBackground.png")))
+              $Graphics$Collage.toForm(A3($Graphics$Element.image,100,25,"img/linkBackground.png")))
               ,A2($Graphics$Collage.move,
               {ctor: "_Tuple2",_0: 0,_1: $Basics.toFloat(((0 - _p18) / 2 | 0) + 10)},
               $Graphics$Collage.toForm($Graphics$Element.show(piApprox(st))))]),
